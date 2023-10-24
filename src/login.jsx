@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from './assets/logo.png';
+import './styles/login.css';
 
 const Login = () => {
   const [user, setuser] = useState('');

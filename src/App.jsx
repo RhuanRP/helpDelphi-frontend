@@ -1,15 +1,23 @@
-import { useState } from 'react'
-import Login from './login.jsx'
-import './styles/login.css'
+import React, { useState, useEffect } from "react";
+import './styles/app.css';
+import Table from "./components/Table";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [dados, setDados] = useState([
+    
+  ]);
+
+  useEffect(() => {
+    setDados([
+
+    ]);
+  }, []);
 
   return (
-    <div className="App">
-      <Login />
+    <div className="container">
+      <Table data={dados} />
     </div>
   );
-}
+};
 
-export default App
+export default App;
