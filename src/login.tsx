@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import logo from './assets/logo.png';
-import './styles/login.css';
+import { useState } from "react";
+import logo from "./assets/logo.png";
+import "./styles/login.css";
 
 const Login = () => {
-  const [user, setuser] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setuser] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
-    <div className='tela-login'>
-      <div className='logo'>
+    <div className="tela-login">
+      <div className="logo">
         <img src={logo} alt="Logo" />
       </div>
       <h2>
-      <span className="help-text">Help</span><span className="delphi-text">Delphi</span>
+        <span className="help-text">Help</span>
+        <span className="delphi-text">Delphi</span>
       </h2>
       <form>
         <div>
@@ -35,9 +36,7 @@ const Login = () => {
         </div>
         <br></br>
         <div className="login-button">
-        <button type="button">
-          Acessar
-        </button>
+          <button type="button">Acessar</button>
         </div>
       </form>
     </div>

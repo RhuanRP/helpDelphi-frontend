@@ -1,13 +1,13 @@
-import React from "react";
-import './app.css';
+import "./app.css";
 
 type TableProps = {
+  // eslint-disable-next-line
   data: any[];
-}
+};
 
-const Table = ({data}: TableProps) => {
-return (
-  <div className="call-table">
+const Table = ({ data }: TableProps) => {
+  return (
+    <div className="call-table">
       <table>
         <thead>
           <tr>
@@ -37,7 +37,7 @@ return (
         </tbody>
       </table>
     </div>
-)
-}
+  );
+};
 
 export default Table;
