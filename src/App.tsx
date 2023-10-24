@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
-import './styles/app.css';
+import { useState, useEffect } from "react";
+import "./styles/app.css";
 import Table from "./components/Table";
 
 const App = () => {
-  const [dados, setDados] = useState([
-    
-  ]);
+  const [dados, setDados] = useState([]);
 
   useEffect(() => {
-    setDados([
-
-    ]);
+    setDados([]);
   }, []);
 
   return (
