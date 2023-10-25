@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./styles/app.css";
 import Table from "./components/Table";
+import Header from "./components/Header";
 
 const App = () => {
   const [dados, setDados] = useState([]);
@@ -10,9 +11,12 @@ const App = () => {
   }, []);
 
   return (
-    <div className="container">
-      <Table data={dados} />
-    </div>
+    <>
+      <Header />
+      <div className="container">
+        <Table data={dados} />
+      </div>
+    </>
   );
 };
 
