@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #03045E;
+  background-color: #abd2fa;
   padding: 10px 10px;
   color: #fff;
   padding-left: 30px;
@@ -37,9 +37,9 @@
   font-size: 16px;
 }
 
-.exit-icon{
+.exit-icon {
   max-width: 30px;
 }
-.logo-header{
+.logo-header {
   max-width: 50px;
 }

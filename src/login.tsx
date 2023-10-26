@@ -1,9 +1,11 @@
 import { useState } from "react";
 import logo from "./assets/logo.png";
+import { Button } from "./components/Button";
 import "./styles/login.css";
+import { Input } from "./components/Input";
 
 const Login = () => {
-  const [user, setuser] = useState("");
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -16,27 +18,24 @@ const Login = () => {
         <span className="delphi-text">Delphi</span>
       </h2>
       <form>
-        <div>
+        <div className="form-item">
           <label>Usuário</label>
-          <br></br>
-          <input
+          <Input
             type="user"
             value={user}
-            onChange={(e) => setuser(e.target.value)}
+            onChange={(e) => setUser(e.target.value)}
           />
         </div>
-        <div>
+        <div className="form-item">
           <label>Senha</label>
-          <br></br>
-          <input
+          <Input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <br></br>
-        <div className="login-button">
-          <button type="button">Acessar</button>
+        <div className="button-container">
+          <Button type="button">Acessar</Button>
         </div>
       </form>
     </div>
