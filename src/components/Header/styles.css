@@ -2,9 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  padding: 10px 20px;
+  background-color: #03045E;
+  padding: 10px 10px;
   color: #fff;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .header-left img {
@@ -19,7 +21,6 @@
 .user-info {
   display: flex;
   align-items: center;
-  margin-right: 20px;
 }
 
 .user-info img {
@@ -36,6 +37,9 @@
   font-size: 16px;
 }
 
-.logout-button i {
-  margin-right: 5px;
+.exit-icon{
+  max-width: 30px;
+}
+.logo-header{
+  max-width: 50px;
 }

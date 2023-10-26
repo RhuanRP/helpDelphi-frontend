@@ -1,0 +1,19 @@
+.call-table{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  background-color: #979797;
+  color: #fff;
+  font-weight: bold;
+}
+
+.table-body{
+  background-color: #ffffff;
+  color: black;
+  font-weight:  bold;
+}
+
+.edit-button{
+  max-width: 30px;
+}
