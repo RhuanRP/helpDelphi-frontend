@@ -15,6 +15,25 @@ const App = () => {
         updatedAt: new Date(),
         id: "1",
       },
+
+      {
+        clientId: "2",
+        subject: "Teste",
+        criticality: "Alta",
+        status: "Aberto",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        id: "2",
+      },
+      {
+        clientId: "3",
+        subject: "Teste",
+        criticality: "Alta",
+        status: "Aberto",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        id: "3",
+      },
     ],
   };
 
@@ -31,5 +50,6 @@ const App = () => {
     </>
   );
 };
+
 
 export default App;

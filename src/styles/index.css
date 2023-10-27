@@ -1,3 +1,4 @@
+/* CSS GLOBAL */
 *,
 *::before,
 *::after {
@@ -13,8 +14,7 @@
 body {
   min-height: 100vh;
   font-family: "Roboto", sans-serif;
-  background-color: white;
-  color: black;
+  background-color: rgb(255, 255, 255);
 }
 
 img,

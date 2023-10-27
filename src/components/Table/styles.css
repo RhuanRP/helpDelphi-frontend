@@ -1,12 +1,12 @@
 table {
   max-width: 100%;
   width: 100%;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #afafaf;
   border-radius: 0.5rem;
 }
 
 thead {
-  background-color: #f5f5f5;
+  background-color: #919090;
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -25,4 +25,17 @@ td {
   height: auto;
   background-color: white;
   cursor: pointer;
+}
+
+.table-body tr:nth-child(odd) {
+  background-color: #414bd6; 
+}
+
+.table-body tr:nth-child(even) {
+  background-color: #001c68;
+  color: white;
+}
+
+.table-body tr:hover {
+  background-color: #727194; 
 }

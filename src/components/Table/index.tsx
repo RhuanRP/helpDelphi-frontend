@@ -1,5 +1,6 @@
 import "./styles.css";
 import editIcon from "../../assets/edit.png";
+import "./modal.css";
 
 export type TableProps = {
   data: {
