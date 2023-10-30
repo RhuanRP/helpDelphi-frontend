@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,10 +28,67 @@ label {
   font-weight: bold;
 }
 
+.modal-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1em;
+}
+
+.modal-left {
+  grid-column: span 2/span 2;
+}
+
+.modal-right {
+  grid-column: span 1/span 1;
+}
+
+.button-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 400px;
+  text-align: center;
+}
+
+.popup input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.popup button {
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: #0056b3;
+}
+
+
 input[type="text-client"],
 select,
 textarea {
-  width: 50%;
+  width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -40,7 +97,7 @@ textarea {
 input[type="text-subject"],
 select,
 textarea {
-  width: 50%;
+  width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -72,12 +129,6 @@ li {
   margin-bottom: 8px;
 }
 
-span{
-  padding-left: 20px;
-}
-
 select {
-  width: 20%;
+  width: 100%;
 }
-
-
