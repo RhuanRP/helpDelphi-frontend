@@ -29,8 +29,7 @@ const AuthContext = React.createContext({} as AuthContextData);
 function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = React.useState<User | null>(null);
   const isAuthenticated = !!user;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cookies, setCookie, removeCookie] = useCookies([
+  const { "1": setCookie, "2": removeCookie } = useCookies([
     "helpdelphi_api_token",
   ]);
 
