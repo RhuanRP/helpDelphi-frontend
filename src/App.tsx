@@ -2,8 +2,16 @@ import "./styles/app.css";
 import Table, { TableProps } from "./components/Table";
 import Header from "./components/Header";
 import logo from "./assets/user.png";
+import React from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./hooks/useAuth";
 
-const App = () => {
+function App() {
+  const [cookies] = useCookies(["helpdelphi_api_token"]);
+  const navigate = useNavigate();
+  const { signOut } = useAuth();
+
   const dados: TableProps = {
     data: [
       {
@@ -37,19 +45,20 @@ const App = () => {
     ],
   };
 
+  React.useEffect(() => {
+    if (typeof cookies.helpdelphi_api_token !== "string") {
+      navigate("/login");
+    }
+  }, [cookies, navigate]);
+
   return (
     <>
-      <Header
-        userAvatar={logo}
-        username="Rhuan"
-        onLogout={() => console.log("")}
-      />
+      <Header userAvatar={logo} username="Rhuan" onLogout={signOut} />
       <div className="container">
         <Table data={dados.data} />
       </div>
     </>
   );
-};
-
+}
 
 export default App;
