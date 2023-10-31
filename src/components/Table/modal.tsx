@@ -1,13 +1,8 @@
-// Modal.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import "./modal.css";
 import { Button } from "../Button";
 
-type ModalProps = {
-  // 
-};
-
-const Modal: React.FC<ModalProps> = (props) => {
+function Modal() {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -29,14 +24,17 @@ const Modal: React.FC<ModalProps> = (props) => {
           <div className="modal-right">
             <label>
               Status
-              <select onChange={(e) => setShowPopup(e.target.value === "pausado")}>
+              <select
+                onChange={(e) => setShowPopup(e.target.value === "pausado")}
+              >
                 <option value="aguardando">Aguardando</option>
                 <option value="em-andamento">Em andamento</option>
                 <option value="pausado">Pausado</option>
                 <option value="resolvido">Resolvido</option>
               </select>
             </label>
-            <label>Criticidade
+            <label>
+              Criticidade
               <select>
                 <option value="baixa">Baixa</option>
                 <option value="media">Média</option>
@@ -54,9 +52,7 @@ const Modal: React.FC<ModalProps> = (props) => {
         <label className="historic-actions">
           Histórico de Ações
           <textarea />
-          <ul>
-            { }
-          </ul>
+          <ul>{}</ul>
         </label>
         <div className="button-action">
           <Button type="button">Salvar</Button>
@@ -69,14 +65,18 @@ const Modal: React.FC<ModalProps> = (props) => {
               <input type="text" />
             </label>
             <div className="button-action">
-              <Button type="button" onClick={() => setShowPopup(true)}>Salvar</Button>
-              <Button type="button" onClick={() => setShowPopup(false)}>Fechar</Button>
+              <Button type="button" onClick={() => setShowPopup(true)}>
+                Salvar
+              </Button>
+              <Button type="button" onClick={() => setShowPopup(false)}>
+                Fechar
+              </Button>
             </div>
           </div>
         )}
       </div>
     </div>
   );
-};
+}
 
 export default Modal;

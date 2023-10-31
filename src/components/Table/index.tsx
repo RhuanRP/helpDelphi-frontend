@@ -1,17 +1,11 @@
 import "./styles.css";
 import editIcon from "../../assets/edit.png";
 import "./modal.css";
+import { TicketsQueryResponse } from "../../App";
+import { formatDate } from "../../lib/utils";
 
 export type TableProps = {
-  data: {
-    id: string;
-    clientId: string;
-    subject: string;
-    criticality: string;
-    status: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }[];
+  data: TicketsQueryResponse | undefined;
 };
 
 const Table = ({ data }: TableProps) => {
@@ -24,31 +18,33 @@ const Table = ({ data }: TableProps) => {
     <table className="call-table">
       <thead>
         <tr>
-          <th>N°</th>
+          <th>Assunto</th>
           <th>Data</th>
           <th>Cliente</th>
-          <th>Assunto</th>
           <th>Criticidade</th>
           <th>Status</th>
           <th>Editar</th>
         </tr>
       </thead>
       <tbody className="table-body">
-        {data.map((item) => (
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{String(item.createdAt)}</td>
-            <td>{item.clientId}</td>
-            <td>{item.subject}</td>
-            <td>{item.criticality}</td>
-            <td>{item.status}</td>
-            <td>
-              <button onClick={() => handleEditClick(item.id)}>
-                <img className="edit-button" src={editIcon} alt="Editar" />
-              </button>
-            </td>
-          </tr>
-        ))}
+        {data && (
+          <>
+            {data.items.map((item) => (
+              <tr key={item.id}>
+                <td>{item.subject}</td>
+                <td>{formatDate(new Date(item.createdAt))}</td>
+                <td>{item.client}</td>
+                <td>{item.criticality}</td>
+                <td>{item.status}</td>
+                <td>
+                  <button onClick={() => handleEditClick(item.id)}>
+                    <img className="edit-button" src={editIcon} alt="Editar" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </>
+        )}
       </tbody>
     </table>
   );
