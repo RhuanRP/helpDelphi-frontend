@@ -1,49 +1,39 @@
 import "./styles/app.css";
-import Table, { TableProps } from "./components/Table";
+import Table from "./components/Table";
 import Header from "./components/Header";
 import logo from "./assets/user.png";
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "./lib/api";
+
+export type TicketsQueryResponse = {
+  items: {
+    id: string;
+    subject: string;
+    client: string;
+    status: string;
+    createdAt: Date;
+    updatedAt: Date | null;
+    criticality: string;
+  }[];
+  totalCount: number;
+};
 
 function App() {
   const [cookies] = useCookies(["helpdelphi_api_token"]);
   const navigate = useNavigate();
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
 
-  const dados: TableProps = {
-    data: [
-      {
-        clientId: "1",
-        subject: "Teste",
-        criticality: "Alta",
-        status: "Aberto",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        id: "1",
-      },
-
-      {
-        clientId: "2",
-        subject: "Teste",
-        criticality: "Alta",
-        status: "Aberto",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        id: "2",
-      },
-      {
-        clientId: "3",
-        subject: "Teste",
-        criticality: "Alta",
-        status: "Aberto",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        id: "3",
-      },
-    ],
-  };
+  const { data } = useQuery({
+    queryKey: ["chamados"],
+    queryFn: async () => {
+      const { data } = await api.get<TicketsQueryResponse>("/tickets?page=1");
+      return data;
+    },
+  });
 
   React.useEffect(() => {
     if (typeof cookies.helpdelphi_api_token !== "string") {
@@ -53,9 +43,9 @@ function App() {
 
   return (
     <>
-      <Header userAvatar={logo} username="Rhuan" onLogout={signOut} />
+      <Header userAvatar={logo} username={user?.username} onLogout={signOut} />
       <div className="container">
-        <Table data={dados.data} />
+        <Table data={data} />
       </div>
     </>
   );

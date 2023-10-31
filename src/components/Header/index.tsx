@@ -4,7 +4,7 @@ import user from "./../../assets/user.png";
 import exit from "./../../assets/exit.png";
 
 interface HeaderProps {
-  username: string;
+  username?: string | null;
   userAvatar: string;
   onLogout: () => void;
 }
