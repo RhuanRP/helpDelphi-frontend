@@ -20,15 +20,22 @@ th,
 td {
   text-align: center;
 }
+
+h2 {
+  font-weight: bold;
+  font-family: roboto;
+  font-size: 16px;
+}
+
 .edit-button {
   width: 30px;
   height: auto;
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
 }
 
 .table-body tr:nth-child(odd) {
-  background-color: #414bd6; 
+  background-color: #414bd6;
 }
 
 .table-body tr:nth-child(even) {
@@ -37,5 +44,5 @@ td {
 }
 
 .table-body tr:hover {
-  background-color: #727194; 
+  background-color: #727194;
 }

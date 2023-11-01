@@ -2,8 +2,25 @@ import { useState } from "react";
 import "./modal.css";
 import { Button } from "../Button";
 
+type Acao = {
+  descricao: string;
+  numero: number;
+};
+
+
 function Modal() {
   const [showPopup, setShowPopup] = useState(false);
+  const [acoes, setAcoes] = useState<Acao[]>([]);
+
+  function novaAcao() {
+    setAcoes([
+      ...acoes,
+      {
+        descricao: "",
+        numero: acoes.length + 1,
+      },
+    ]);
+  }
 
   return (
     <div className="modal">
@@ -51,9 +68,11 @@ function Modal() {
 
         <label className="historic-actions">
           Histórico de Ações
-          <textarea />
-          <ul>{}</ul>
         </label>
+        <div className="border-actions">
+          {acoes.map((acao, index) => (<><h2>{acao.numero}°Ação</h2><textarea key={index} /></>))}
+          <button className="add-button" onClick={novaAcao}>Adcionar</button>
+        </div>
         <div className="button-action">
           <Button type="button">Salvar</Button>
           <Button type="button">Cancelar</Button>
@@ -75,7 +94,7 @@ function Modal() {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 }
 

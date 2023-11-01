@@ -1,17 +1,19 @@
 import "./styles.css";
-import editIcon from "../../assets/edit.png";
+import editIcon from "../../assets/edit.svg";
 import "./modal.css";
 import { TicketsQueryResponse } from "../../App";
 import { formatDate } from "../../lib/utils";
+import { redirect } from "react-router-dom";
 
 export type TableProps = {
   data: TicketsQueryResponse | undefined;
 };
 
 const Table = ({ data }: TableProps) => {
+
   const handleEditClick = (itemId: string) => {
     console.log(itemId);
-    //logica do botão (fazer depois).
+    redirect("/app/modal");
   };
 
   return (
