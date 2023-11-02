@@ -1,11 +1,9 @@
 import "./styles/app.css";
 import Table from "./components/Table";
 import Header from "./components/Header";
-import logo from "./assets/user.png";
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "./lib/api";
 
@@ -25,7 +23,6 @@ export type TicketsQueryResponse = {
 function App() {
   const [cookies] = useCookies(["helpdelphi_api_token"]);
   const navigate = useNavigate();
-  const { signOut, user } = useAuth();
 
   const { data } = useQuery({
     queryKey: ["chamados"],
@@ -43,7 +40,7 @@ function App() {
 
   return (
     <>
-      <Header userAvatar={logo} username={user?.username} onLogout={signOut} />
+      <Header />
       <div className="container">
         <Table data={data} />
       </div>

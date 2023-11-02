@@ -2,14 +2,13 @@ import "./styles.css";
 import logo from "./../../assets/logo.png";
 import user from "./../../assets/user.png";
 import exit from "./../../assets/exit.png";
+import { useAuth } from "../../hooks/useAuth";
 
-interface HeaderProps {
-  username?: string | null;
-  userAvatar: string;
-  onLogout: () => void;
-}
 
-const Header: React.FC<HeaderProps> = ({ username, onLogout }) => {
+
+function Header() {
+  const { signOut, user: authUser } = useAuth()
+
   return (
     <header className="header">
       <div className="header-left">
@@ -18,14 +17,14 @@ const Header: React.FC<HeaderProps> = ({ username, onLogout }) => {
       <div className="header-right">
         <div className="user-info">
           <img src={user} alt="User Avatar" />
-          <span>{username}</span>
+          <span>{authUser?.username}</span>
         </div>
-        <button onClick={onLogout} className="logout-button">
+        <button onClick={signOut} className="logout-button">
           <img className="exit-icon" src={exit} alt="exit" />
         </button>
       </div>
     </header>
   );
-};
+}
 
 export default Header;
