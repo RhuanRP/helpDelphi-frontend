@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./contexts/AuthContext";
 import Modal from "./components/Modal/modal";
 import Admin from "./Admin";
+import { Toaster } from "./components/Toaster";
 
 const router = createBrowserRouter([
   { path: "/app", element: <App /> },
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />
+        <Toaster />
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

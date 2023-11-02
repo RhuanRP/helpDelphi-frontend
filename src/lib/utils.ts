@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { toast } from "sonner";
+
 export function formatDate(date: Date) {
   return new Intl.DateTimeFormat("pt-BR", { dateStyle: "short" }).format(date);
 }
@@ -27,5 +30,18 @@ export function translateCriticality(criticality: string) {
       return "Alta";
     default:
       "";
+  }
+}
+
+export function catchError(err: unknown) {
+  if (err instanceof z.ZodError) {
+    const errors = err.issues.map((issue) => {
+      return issue.message;
+    });
+    return toast.error(errors.join("\n"));
+  } else if (err instanceof Error) {
+    return toast.error(err.message);
+  } else {
+    return toast.error("Something went wrong, please try again later.");
   }
 }

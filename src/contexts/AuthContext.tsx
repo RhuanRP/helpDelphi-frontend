@@ -11,9 +11,11 @@ type AuthContextData = {
   signIn: ({
     token,
     username,
+    role,
   }: {
     token: string;
     username: string;
+    role: "admin" | "client" | "technician";
   }) => Promise<void>;
   signOut: () => void;
   user: User | null;
@@ -36,10 +38,15 @@ function AuthProvider({ children }: AuthProviderProps) {
   async function signIn({
     token,
     username,
+    role,
   }: {
     token: string;
     username: string;
+    role: "admin" | "client" | "technician";
   }) {
+    if (role === "client") {
+      throw new Error("Cliente, acesse pelo aplicativo móvel");
+    }
     setCookie("helpdelphi_api_token", token, {
       maxAge: 60 * 60 * 24, // 1 Day
       path: "/",

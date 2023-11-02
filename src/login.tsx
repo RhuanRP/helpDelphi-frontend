@@ -11,12 +11,14 @@ import { useAuth } from "./hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import React from "react";
+import { catchError } from "./lib/utils";
 
 type Input = z.infer<typeof authSchema>;
 
 type SignInResponse = {
   user: {
     username: string;
+    role: "admin" | "client" | "technician";
   };
   token: string;
 };
@@ -33,8 +35,16 @@ const Login = () => {
       const { data } = await api.post<SignInResponse>("/users/session", input);
       return data;
     },
-    onSuccess: (data) => {
-      signIn({ username: data.user.username, token: data.token });
+    onSuccess: async (data) => {
+      try {
+        await signIn({
+          username: data.user.username,
+          token: data.token,
+          role: data.user.role,
+        });
+      } catch (error) {
+        catchError(error);
+      }
     },
     onError: (err) => {
       console.log(err);
