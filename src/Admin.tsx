@@ -6,6 +6,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "./lib/api";
+import React from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { verifyAuthToken } from "./lib/utils";
 
 const userSchema = z.object({
   name: z.string().toUpperCase(),
@@ -21,6 +25,9 @@ const userSchema = z.object({
 type Input = z.infer<typeof userSchema>;
 
 function Admin() {
+  const [cookies] = useCookies(["helpdelphi_api_token"]);
+  const navigate = useNavigate();
+
   const form = useForm<Input>({
     resolver: zodResolver(userSchema),
     defaultValues: {
@@ -43,6 +50,18 @@ function Admin() {
   function onSubmit(data: Input) {
     mutation.mutate(data);
   }
+
+  React.useEffect(() => {
+    if (typeof cookies.helpdelphi_api_token !== "string") {
+      navigate("/login");
+    }
+
+    const decodedToken = verifyAuthToken(cookies.helpdelphi_api_token);
+
+    if (decodedToken.role === "technician") {
+      navigate("/");
+    }
+  }, [cookies, navigate]);
 
   return (
     <>

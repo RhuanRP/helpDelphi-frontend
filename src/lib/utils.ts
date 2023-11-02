@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { toast } from "sonner";
+import { jwtDecode } from "jwt-decode";
 
 export function formatDate(date: Date) {
   return new Intl.DateTimeFormat("pt-BR", { dateStyle: "short" }).format(date);
@@ -44,4 +45,14 @@ export function catchError(err: unknown) {
   } else {
     return toast.error("Something went wrong, please try again later.");
   }
+}
+
+export function verifyAuthToken(token: string) {
+  const decodedToken = jwtDecode<{
+    role: "technician" | "admin";
+    sub: string;
+    iat: number;
+  }>(token);
+
+  return decodedToken;
 }
