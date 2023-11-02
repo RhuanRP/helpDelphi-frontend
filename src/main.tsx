@@ -4,10 +4,10 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./login";
 import "./styles/index.css";
-import Modal from "./components/Table/modal";
-import Admin from "./components/Administrator/admin";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./contexts/AuthContext";
+import Modal from "./components/Modal/modal";
+import Admin from "./Admin";
 
 const router = createBrowserRouter([
   { path: "/app", element: <App /> },

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import "./modal.css";
+import "./styles.css";
 import { Button } from "../Button";
 
 type Acao = {
   descricao: string;
   numero: number;
 };
-
 
 function Modal() {
   const [showPopup, setShowPopup] = useState(false);
@@ -66,12 +65,17 @@ function Modal() {
           <textarea />
         </label>
 
-        <label className="historic-actions">
-          Histórico de Ações
-        </label>
+        <label className="historic-actions">Histórico de Ações</label>
         <div className="border-actions">
-          {acoes.map((acao, index) => (<><h2>{acao.numero}°Ação</h2><textarea key={index} /></>))}
-          <button className="add-button" onClick={novaAcao}>Adcionar</button>
+          {acoes.map((acao, index) => (
+            <>
+              <h2>{acao.numero}°Ação</h2>
+              <textarea key={index} />
+            </>
+          ))}
+          <button className="add-button" onClick={novaAcao}>
+            Adcionar
+          </button>
         </div>
         <div className="button-action">
           <Button type="button">Salvar</Button>
@@ -94,7 +98,7 @@ function Modal() {
           </div>
         )}
       </div>
-    </div >
+    </div>
   );
 }
 
