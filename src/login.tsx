@@ -61,7 +61,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (typeof cookies.helpdelphi_api_token === "string") {
-      navigate("/app");
+      navigate("/");
     }
   }, [cookies, navigate]);
 

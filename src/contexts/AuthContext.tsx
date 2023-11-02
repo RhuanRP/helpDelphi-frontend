@@ -58,7 +58,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
-    redirect("/app");
+    redirect("/");
   }
 
   async function signOut() {

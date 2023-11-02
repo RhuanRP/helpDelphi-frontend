@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "./lib/api";
+import { verifyAuthToken } from "./lib/utils";
 
 export type TicketsQueryResponse = {
   items: {
@@ -45,6 +46,12 @@ function App() {
   React.useEffect(() => {
     if (typeof cookies.helpdelphi_api_token !== "string") {
       navigate("/login");
+    }
+
+    const decodedToken = verifyAuthToken(cookies.helpdelphi_api_token);
+
+    if (decodedToken.role === "admin") {
+      navigate("/admin");
     }
   }, [cookies, navigate]);
 

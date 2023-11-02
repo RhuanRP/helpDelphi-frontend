@@ -11,7 +11,7 @@ import Admin from "./Admin";
 import { Toaster } from "./components/Toaster";
 
 const router = createBrowserRouter([
-  { path: "/app", element: <App /> },
+  { path: "/", element: <App /> },
   { path: "/login", element: <Login /> },
   { path: "/modal", element: <Modal /> },
   { path: "/admin", element: <Admin /> },
