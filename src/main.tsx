@@ -6,14 +6,12 @@ import Login from "./Login";
 import "./styles/index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./contexts/AuthContext";
-import Modal from "./components/Modal/modal";
 import Admin from "./Admin";
 import { Toaster } from "./components/Toaster";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "/login", element: <Login /> },
-  { path: "/modal", element: <Modal /> },
   { path: "/admin", element: <Admin /> },
 ]);
 
