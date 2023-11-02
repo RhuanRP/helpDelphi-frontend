@@ -1,8 +1,7 @@
 import { useState } from "react";
-import "./styles.css";
-import { Button } from "../Button";
-import Header from "../Header";
-
+import "./styles/Admin.css";
+import { Button } from "./components/Button";
+import Header from "./components/Header";
 
 function Admin() {
   const [showPopup, setShowPopup] = useState(false);
@@ -15,7 +14,6 @@ function Admin() {
           <h1>Cadastro de usuário</h1>
           <div className="form-contents">
             <div className="form-inputs">
-
               <div className="form-left">
                 <label>
                   <p>Nome</p>
@@ -42,7 +40,6 @@ function Admin() {
               </div>
 
               <div className="form-right">
-
                 <label>
                   <p>CPF/CNPJ</p>
                   <input type="text-document" />
@@ -71,6 +68,7 @@ function Admin() {
           </div>
 
           <br></br>
+          {showPopup && <h1>Deu certo</h1>}
           <div className="button-action">
             <Button type="button" onClick={() => setShowPopup(true)}>
               Salvar
@@ -80,7 +78,8 @@ function Admin() {
             </Button>
           </div>
         </div>
-      </div></>
+      </div>
+    </>
   );
 }
 

@@ -35,11 +35,11 @@ label {
 }
 
 .modal-left {
-  grid-column: span 2/span 2;
+  grid-column: span 2 / span 2;
 }
 
 .modal-right {
-  grid-column: span 1/span 1;
+  grid-column: span 1 / span 1;
 }
 
 .button-action {
@@ -91,7 +91,6 @@ label {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-
 }
 
 input[type="text-client"],

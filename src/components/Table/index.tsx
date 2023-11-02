@@ -1,6 +1,5 @@
 import "./styles.css";
 import editIcon from "../../assets/edit.svg";
-import "./modal.css";
 import { TicketsQueryResponse } from "../../App";
 import { formatDate } from "../../lib/utils";
 import { redirect } from "react-router-dom";
@@ -10,7 +9,6 @@ export type TableProps = {
 };
 
 const Table = ({ data }: TableProps) => {
-
   const handleEditClick = (itemId: string) => {
     console.log(itemId);
     redirect("/app/modal");
