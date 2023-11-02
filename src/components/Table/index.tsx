@@ -1,6 +1,10 @@
 import "./styles.css";
 import { TicketsQueryResponse } from "../../App";
-import { formatDate } from "../../lib/utils";
+import {
+  formatDate,
+  translateCriticality,
+  translateStatus,
+} from "../../lib/utils";
 import { ModalChamado } from "../ModalChamado";
 
 export type TableProps = {
@@ -28,8 +32,8 @@ const Table = ({ data }: TableProps) => {
                 <td>{item.subject}</td>
                 <td>{formatDate(new Date(item.createdAt))}</td>
                 <td>{item.user.name}</td>
-                <td>{item.criticality}</td>
-                <td>{item.status}</td>
+                <td>{translateCriticality(item.criticality)}</td>
+                <td>{translateStatus(item.status)}</td>
                 <td>
                   {/* <button onClick={() => handleEditClick(item.id)}>
                     <img className="edit-button" src={editIcon} alt="Editar" />
