@@ -10,12 +10,22 @@ import { api } from "./lib/api";
 export type TicketsQueryResponse = {
   items: {
     id: string;
+    clientId: string;
     subject: string;
-    client: string;
+    criticality: string;
     status: string;
     createdAt: Date;
     updatedAt: Date | null;
-    criticality: string;
+    actions: {
+      id: string;
+      description: string;
+      createdAt: Date;
+      updatedAt: Date | null;
+      ticketId: string;
+    }[];
+    user: {
+      name: string;
+    };
   }[];
   totalCount: number;
 };

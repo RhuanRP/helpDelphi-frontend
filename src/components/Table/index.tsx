@@ -1,19 +1,17 @@
 import "./styles.css";
-import editIcon from "../../assets/edit.svg";
 import { TicketsQueryResponse } from "../../App";
-import { formatDate } from "../../lib/utils";
-import { redirect } from "react-router-dom";
+import {
+  formatDate,
+  translateCriticality,
+  translateStatus,
+} from "../../lib/utils";
+import { ModalChamado } from "../ModalChamado";
 
 export type TableProps = {
   data: TicketsQueryResponse | undefined;
 };
 
 const Table = ({ data }: TableProps) => {
-  const handleEditClick = (itemId: string) => {
-    console.log(itemId);
-    redirect("/app/modal");
-  };
-
   return (
     <table className="call-table">
       <thead>
@@ -33,13 +31,14 @@ const Table = ({ data }: TableProps) => {
               <tr key={item.id}>
                 <td>{item.subject}</td>
                 <td>{formatDate(new Date(item.createdAt))}</td>
-                <td>{item.client}</td>
-                <td>{item.criticality}</td>
-                <td>{item.status}</td>
+                <td>{item.user.name}</td>
+                <td>{translateCriticality(item.criticality)}</td>
+                <td>{translateStatus(item.status)}</td>
                 <td>
-                  <button onClick={() => handleEditClick(item.id)}>
+                  {/* <button onClick={() => handleEditClick(item.id)}>
                     <img className="edit-button" src={editIcon} alt="Editar" />
-                  </button>
+                  </button> */}
+                  <ModalChamado chamado={item} />
                 </td>
               </tr>
             ))}
