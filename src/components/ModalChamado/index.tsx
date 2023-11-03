@@ -98,7 +98,7 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
     <Dialog.Root open={isOpen} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button>
-          <Pencil />
+          <Pencil color="#ffffff" />
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>

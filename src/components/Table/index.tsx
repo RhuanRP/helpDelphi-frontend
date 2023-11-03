@@ -35,9 +35,6 @@ const Table = ({ data }: TableProps) => {
                 <td>{translateCriticality(item.criticality)}</td>
                 <td>{translateStatus(item.status)}</td>
                 <td>
-                  {/* <button onClick={() => handleEditClick(item.id)}>
-                    <img className="edit-button" src={editIcon} alt="Editar" />
-                  </button> */}
                   <ModalChamado chamado={item} />
                 </td>
               </tr>
