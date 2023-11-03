@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 env:
-  VITE_API_URL: "https://helpdelphi-api.fly.dev"
+  VITE_BASE_URL: "https://helpdelphi-api.fly.dev"
 
 jobs:
   test:
