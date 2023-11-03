@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./Login";
+import Login from "./Login2";
 import "./styles/index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./contexts/AuthContext";
