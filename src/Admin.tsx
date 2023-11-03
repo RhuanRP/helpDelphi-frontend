@@ -12,16 +12,30 @@ import { useNavigate } from "react-router-dom";
 import { verifyAuthToken } from "./lib/utils";
 import { Input } from "./components/Form/Input";
 import { Select } from "./components/Form/Select";
+import { toast } from "sonner";
 
 const userSchema = z.object({
-  name: z.string().toUpperCase(),
-  company: z.string().toUpperCase(),
-  email: z.string().email().toLowerCase(),
-  document: z.string(),
-  phone: z.string(),
-  role: z.string(),
-  username: z.string().toLowerCase(),
-  password: z.string(),
+  name: z
+    .string()
+    .min(1, { message: "O campo não pode estar vazio" })
+    .toUpperCase(),
+  company: z
+    .string()
+    .min(1, { message: "O campo não pode estar vazio" })
+    .toUpperCase(),
+  email: z.string().email({ message: "Digite um email válido" }).toLowerCase(),
+  document: z.string().length(11, { message: "Digite um CPF válido" }),
+  phone: z
+    .string()
+    .length(11, { message: "Digite um número de celular válido" }),
+  role: z.string().min(1, { message: "O campo não pode estar vazio" }),
+  username: z
+    .string()
+    .min(1, { message: "O campo não pode estar vazio" })
+    .toLowerCase(),
+  password: z
+    .string()
+    .min(3, { message: "A senha deve conter no mínimo três dígitos" }),
 });
 
 type Input = z.infer<typeof userSchema>;
@@ -43,6 +57,7 @@ function Admin() {
     },
     onSuccess: () => {
       form.reset();
+      toast.success("Usuário cadastrado com sucesso!");
     },
     onError: (err) => {
       console.log(err);
@@ -76,20 +91,41 @@ function Admin() {
             className="form-user"
           >
             <div className="double-input">
-              <Input {...form.register("name")} label="Nome" />
-              <Input {...form.register("document")} label="CPF/CNPJ" />
+              <Input
+                {...form.register("name")}
+                label="Nome"
+                error={form.formState.errors.name}
+              />
+              <Input
+                {...form.register("document")}
+                label="CPF/CNPJ"
+                error={form.formState.errors.document}
+              />
             </div>
             <div className="double-input">
-              <Input {...form.register("company")} label="Empresa" />
-              <Input {...form.register("phone")} label="Telefone" />
+              <Input
+                {...form.register("company")}
+                label="Empresa"
+                error={form.formState.errors.company}
+              />
+              <Input
+                {...form.register("phone")}
+                label="Telefone"
+                error={form.formState.errors.phone}
+              />
             </div>
             <div className="double-input">
-              <Input {...form.register("email")} label="Email" />
+              <Input
+                {...form.register("email")}
+                label="Email"
+                error={form.formState.errors.email}
+              />
               <Select
                 name="role"
                 label="Tipo de Cadastro"
                 defaultValue={form.getValues("role")}
                 onChange={(e) => form.setValue("role", e.target.value)}
+                error={form.formState.errors.role}
               >
                 <option value="client">Cliente</option>
                 <option value="technician">Tecnico</option>
@@ -97,11 +133,16 @@ function Admin() {
               </Select>
             </div>
             <div className="login-inputs">
-              <Input {...form.register("username")} label="Login" />
+              <Input
+                {...form.register("username")}
+                label="Login"
+                error={form.formState.errors.username}
+              />
               <Input
                 type="password"
                 {...form.register("password")}
                 label="Senha "
+                error={form.formState.errors.password}
               />
             </div>
             <div className="submit-buttons">

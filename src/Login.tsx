@@ -1,4 +1,3 @@
-import { FormEvent } from "react";
 import logo from "./assets/logo.png";
 import { Button } from "./components/Button";
 import "./styles/Login.css";
@@ -12,6 +11,9 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import React from "react";
 import { catchError } from "./lib/utils";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Icons } from "./components/Icons";
 
 type Input = z.infer<typeof authSchema>;
 
@@ -24,8 +26,9 @@ type SignInResponse = {
 };
 
 const Login = () => {
-  const [user, setUser] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const form = useForm<Input>({
+    resolver: zodResolver(authSchema),
+  });
   const { signIn } = useAuth();
   const [cookies] = useCookies(["helpdelphi_api_token"]);
   const navigate = useNavigate();
@@ -46,17 +49,13 @@ const Login = () => {
         catchError(error);
       }
     },
-    onError: (err) => {
-      console.log(err);
+    onError: () => {
+      catchError(new Error("Usuário ou senha incorretos"));
     },
   });
 
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    mutation.mutate({
-      username: user,
-      password,
-    });
+  function onSubmit(data: Input) {
+    mutation.mutate(data);
   }
 
   React.useEffect(() => {
@@ -74,23 +73,26 @@ const Login = () => {
         <span className="help-text">Help</span>
         <span className="delphi-text">Delphi</span>
       </h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}>
         <Input
           label="Usuário"
-          name="user"
-          type="user"
-          value={user}
-          onChange={(e) => setUser(e.target.value)}
+          {...form.register("username")}
+          error={form.formState.errors.username}
         />
         <Input
           type="password"
-          name="password"
           label="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          {...form.register("password")}
+          error={form.formState.errors.password}
         />
         <div className="button-container">
-          <Button type="submit">Acessar</Button>
+          <Button
+            disabled={mutation.isPending || mutation.isSuccess}
+            type="submit"
+          >
+            {mutation.isPending && <Icons.spinner className="loader-icon" />}
+            Acessar
+          </Button>
         </div>
       </form>
     </div>

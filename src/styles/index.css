@@ -30,3 +30,20 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+.loader-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
