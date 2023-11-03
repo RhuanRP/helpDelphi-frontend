@@ -38,8 +38,9 @@ function App() {
   const { data } = useQuery({
     queryKey: ["chamados"],
     queryFn: async () => {
-      const { data } = await api.get<TicketsQueryResponse>("/tickets?page=1");
-      return data;
+      return api
+        .get<TicketsQueryResponse>("/tickets?page=1")
+        .then((res) => res.data);
     },
   });
 

@@ -61,6 +61,7 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
       actions: [],
     },
   });
+
   const actions = useFieldArray({
     control: form.control,
     name: "actions",
@@ -72,20 +73,15 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
     });
   }
 
-  function resetAndClose() {
-    form.reset();
-    setOpen(false);
-  }
-
   const mutation = useMutation({
     mutationFn: async (data: Input) => {
-      await api.patch(`/tickets/${chamado.id}`, data);
+      return api.patch(`/tickets/${chamado.id}`, data);
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
         queryKey: ["chamados"],
       });
-      resetAndClose();
+      setOpen(false);
       toast.success("Chamado editado com sucesso");
     },
     onError: (err) => {
@@ -96,6 +92,14 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
   function onSubmit(data: Input) {
     mutation.mutate(data);
   }
+
+  React.useEffect(() => {
+    form.reset({
+      actions: [],
+      criticality: chamado.criticality,
+      status: chamado.status,
+    });
+  }, [isOpen, form, chamado]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setOpen}>
@@ -160,25 +164,23 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
                   <TextArea
                     name={`action-${index}`}
                     label={`Ação ${index + 1}`}
-                    key={index}
+                    key={`existent-${index}`}
                     defaultValue={action.description}
                     disabled
                   />
                 ))}
                 {actions.fields.map((acao, index) => (
-                  <>
-                    <TextArea
-                      key={acao.id}
-                      {...form.register(`actions.${index}.description`)}
-                      name={`actions.${index}.description`}
-                      error={
-                        form.formState.errors.actions
-                          ? form.formState.errors.actions[index]?.description
-                          : undefined
-                      }
-                      label={`Ação ${index + chamado.actions.length + 1}`}
-                    />
-                  </>
+                  <TextArea
+                    key={acao.id}
+                    {...form.register(`actions.${index}.description`)}
+                    name={`actions.${index}.description`}
+                    error={
+                      form.formState.errors.actions
+                        ? form.formState.errors.actions[index]?.description
+                        : undefined
+                    }
+                    label={`Ação ${index + chamado.actions.length + 1}`}
+                  />
                 ))}
               </div>
               <div>
@@ -188,18 +190,15 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
               </div>
 
               <div className="submit-buttons">
-                <Button
-                  disabled={mutation.isPending || mutation.isSuccess}
-                  type="submit"
-                >
+                <Button disabled={mutation.isPending} type="submit">
                   {mutation.isPending && (
                     <Icons.spinner className="loader-icon" />
                   )}
                   Salvar
                 </Button>
-                <Button onClick={resetAndClose} type="button">
-                  Cancelar
-                </Button>
+                <Dialog.Close asChild>
+                  <Button type="button">Cancelar</Button>
+                </Dialog.Close>
               </div>
             </form>
           </Dialog.Content>
