@@ -13,6 +13,7 @@ import { verifyAuthToken } from "./lib/utils";
 import { Input } from "./components/Form/Input";
 import { Select } from "./components/Form/Select";
 import { toast } from "sonner";
+import { Icons } from "./components/Icons";
 
 const userSchema = z.object({
   name: z
@@ -146,7 +147,15 @@ function Admin() {
               />
             </div>
             <div className="submit-buttons">
-              <Button type="submit">Salvar</Button>
+              <Button
+                disabled={mutation.isPending || mutation.isSuccess}
+                type="submit"
+              >
+                {mutation.isPending && (
+                  <Icons.spinner className="loader-icon" />
+                )}
+                Salvar
+              </Button>
               <Button type="button" onClick={() => form.reset()}>
                 Cancelar
               </Button>

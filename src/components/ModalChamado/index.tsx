@@ -188,7 +188,15 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
               </div>
 
               <div className="submit-buttons">
-                <Button type="submit">Salvar</Button>
+                <Button
+                  disabled={mutation.isPending || mutation.isSuccess}
+                  type="submit"
+                >
+                  {mutation.isPending && (
+                    <Icons.spinner className="loader-icon" />
+                  )}
+                  Salvar
+                </Button>
                 <Button onClick={resetAndClose} type="button">
                   Cancelar
                 </Button>
