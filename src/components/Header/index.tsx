@@ -1,13 +1,10 @@
 import "./styles.css";
 import logo from "./../../assets/logo.png";
-import user from "./../../assets/user.png";
-import exit from "./../../assets/exit.png";
 import { useAuth } from "../../hooks/useAuth";
-
-
+import { Icons } from "../Icons";
 
 function Header() {
-  const { signOut, user: authUser } = useAuth()
+  const { signOut, user: authUser } = useAuth();
 
   return (
     <header className="header">
@@ -16,11 +13,11 @@ function Header() {
       </div>
       <div className="header-right">
         <div className="user-info">
-          <img src={user} alt="User Avatar" />
+          <Icons.user width={40} height={40} />
           <span>{authUser?.username}</span>
         </div>
         <button onClick={signOut} className="logout-button">
-          <img className="exit-icon" src={exit} alt="exit" />
+          <Icons.signOut />
         </button>
       </div>
     </header>
