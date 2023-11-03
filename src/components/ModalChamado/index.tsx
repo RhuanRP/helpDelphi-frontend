@@ -7,10 +7,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "../../lib/api";
-import { Pencil } from "lucide-react";
 import { Input } from "../Form/Input";
 import { Select } from "../Form/Select";
 import { TextArea } from "../Form/TextArea";
+import { Icons } from "../Icons";
+import { toast } from "sonner";
+import { catchError } from "../../lib/utils";
 
 type ModalChamadoProps = {
   chamado: {
@@ -84,9 +86,10 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
         queryKey: ["chamados"],
       });
       resetAndClose();
+      toast.success("Chamado editado com sucesso");
     },
     onError: (err) => {
-      console.log(err);
+      catchError(err);
     },
   });
 
@@ -98,7 +101,7 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
     <Dialog.Root open={isOpen} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button>
-          <Pencil color="#ffffff" />
+          <Icons.edit color="#ffffff" />
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -119,6 +122,7 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
                 <Select
                   label="Status"
                   name="status"
+                  error={form.formState.errors.status}
                   defaultValue={form.getValues("status")}
                   onChange={(e) => form.setValue("status", e.target.value)}
                 >
@@ -138,6 +142,7 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
                 <Select
                   name="criticality"
                   label="Criticidade"
+                  error={form.formState.errors.criticality}
                   defaultValue={form.getValues("criticality")}
                   onChange={(e) => form.setValue("criticality", e.target.value)}
                 >
@@ -166,10 +171,13 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
                       key={acao.id}
                       {...form.register(`actions.${index}.description`)}
                       name={`actions.${index}.description`}
+                      error={
+                        form.formState.errors.actions
+                          ? form.formState.errors.actions[index]?.description
+                          : undefined
+                      }
                       label={`Ação ${index + chamado.actions.length + 1}`}
-                      required
                     />
-                    <p>{form.formState.errors.actions?.[index]?.message}</p>
                   </>
                 ))}
               </div>
@@ -180,7 +188,15 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
               </div>
 
               <div className="submit-buttons">
-                <Button type="submit">Salvar</Button>
+                <Button
+                  disabled={mutation.isPending || mutation.isSuccess}
+                  type="submit"
+                >
+                  {mutation.isPending && (
+                    <Icons.spinner className="loader-icon" />
+                  )}
+                  Salvar
+                </Button>
                 <Button onClick={resetAndClose} type="button">
                   Cancelar
                 </Button>
