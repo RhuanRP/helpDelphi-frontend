@@ -1,4 +1,4 @@
-import "./styles/app.css";
+import "./styles/App.css";
 import Table from "./components/Table";
 import Header from "./components/Header";
 import React from "react";

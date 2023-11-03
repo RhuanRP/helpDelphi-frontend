@@ -100,7 +100,7 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button>
+        <button data-testid="open-modal">
           <Icons.edit color="#ffffff" />
         </button>
       </Dialog.Trigger>
