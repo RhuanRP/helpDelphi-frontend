@@ -84,7 +84,7 @@ function Admin() {
     <>
       <Header />
       <div className="user-container">
-        <div className="form-wrapper">
+        <div className="admin-form-wrapper">
           <h1 className="form-title">Cadastro de usuário</h1>
           <form
             onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
