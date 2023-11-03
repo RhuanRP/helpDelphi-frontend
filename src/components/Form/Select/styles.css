@@ -1,0 +1,57 @@
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-bottom: 2px;
+}
+
+.primary-select {
+  border-radius: 0.25rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  border: 1px solid #ced4da;
+  width: 100%;
+
+  :disabled {
+    cursor: not-allowed;
+  }
+
+  :focus {
+    outline: none;
+  }
+}
+
+.error-select {
+  border-radius: 0.25rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+
+  width: 100%;
+
+  :disabled {
+    cursor: not-allowed;
+  }
+
+  :focus {
+    border: 1px solid #ef4444;
+    outline: none;
+  }
+}
+
+.error-message {
+  margin-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: #ef4444;
+}

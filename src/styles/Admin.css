@@ -1,129 +1,47 @@
-.view-admin {
-  /* position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999; */
+.user-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 8rem;
+}
+
+.form-wrapper {
+  border: black 1px solid;
+  padding: 2rem;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.form-user {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.double-input {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.login-inputs {
+  display: flex;
+  padding-left: 5rem;
+  gap: 2rem;
+  padding-right: 5rem;
+  margin-bottom: 2rem;
+}
+
+.submit-buttons {
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: center;
-  max-width: 1280px;
-  height: 100vh;
-}
-
-.form-line {
-  border: black 1px solid;
-  padding: 30px;
-}
-
-h1 {
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.form-contents {
-  margin-top: 30px;
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.form-inputs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1em;
-}
-
-.form-left {
-  grid-column: span 2 / span 2;
-}
-
-.form-right {
-  grid-column: span 1 / span 1;
-}
-
-.login-center {
-  display: flex;
-  justify-content: center;
-}
-
-.password-center {
-  display: flex;
-  justify-content: center;
-}
-
-input[type="text-name"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-input[type="text-company"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-input[type="text-email"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-input[type="text-tel"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-input[type="text-document"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-input[type="text-login"],
-select,
-textarea {
-  width: 70%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-input[type="text-password"],
-select,
-textarea {
-  width: 70%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-select {
-  width: 100%;
+  gap: 1rem;
 }
