@@ -10,6 +10,8 @@ import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { verifyAuthToken } from "./lib/utils";
+import { Input } from "./components/Form/Input";
+import { Select } from "./components/Form/Select";
 
 const userSchema = z.object({
   name: z.string().toUpperCase(),
@@ -66,76 +68,50 @@ function Admin() {
   return (
     <>
       <Header />
-      <div className="view-admin">
-        <form
-          onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
-          className="form-line"
-        >
-          <h1>Cadastro de usuário</h1>
-          <div className="form-contents">
-            <div className="form-inputs">
-              <div className="form-left">
-                <label>
-                  <p>Nome</p>
-                  <input {...form.register("name")} type="text-name" />
-                </label>
-
-                <label>
-                  <p>Empresa</p>
-                  <input {...form.register("company")} type="text-company" />
-                </label>
-
-                <label>
-                  <p>Email</p>
-                  <input {...form.register("email")} type="text-email" />
-                </label>
-
-                <br></br>
-                <div className="login-center">
-                  <label>
-                    <p>Login</p>
-                    <input {...form.register("username")} type="text-login" />
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-right">
-                <label>
-                  <p>CPF/CNPJ</p>
-                  <input {...form.register("document")} type="text-document" />
-                </label>
-
-                <label>
-                  <p>Telefone</p>
-                  <input {...form.register("phone")} type="text-tel" />
-                </label>
-
-                <label>
-                  Tipo de cadastro
-                  <select
-                    defaultValue={form.getValues("role")}
-                    onChange={(e) => form.setValue("role", e.target.value)}
-                  >
-                    <option value="client">Cliente</option>
-                    <option value="technician">Tecnico</option>
-                    <option value="admin">Admin</option>
-                  </select>
-                </label>
-                <br></br>
-                <div className="password-center"></div>
-                <label>
-                  <p>Senha</p>
-                  <input type="password" {...form.register("password")} />
-                </label>
-              </div>
+      <div className="user-container">
+        <div className="form-wrapper">
+          <h1 className="form-title">Cadastro de usuário</h1>
+          <form
+            onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+            className="form-user"
+          >
+            <div className="double-input">
+              <Input {...form.register("name")} label="Nome" />
+              <Input {...form.register("document")} label="CPF/CNPJ" />
             </div>
-          </div>
-
-          <br></br>
-          <div className="button-action">
-            <Button type="submit">Salvar</Button>
-          </div>
-        </form>
+            <div className="double-input">
+              <Input {...form.register("company")} label="Empresa" />
+              <Input {...form.register("phone")} label="Telefone" />
+            </div>
+            <div className="double-input">
+              <Input {...form.register("email")} label="Email" />
+              <Select
+                name="role"
+                label="Tipo de Cadastro"
+                defaultValue={form.getValues("role")}
+                onChange={(e) => form.setValue("role", e.target.value)}
+              >
+                <option value="client">Cliente</option>
+                <option value="technician">Tecnico</option>
+                <option value="admin">Admin</option>
+              </Select>
+            </div>
+            <div className="login-inputs">
+              <Input {...form.register("username")} label="Login" />
+              <Input
+                type="password"
+                {...form.register("password")}
+                label="Senha "
+              />
+            </div>
+            <div className="submit-buttons">
+              <Button type="submit">Salvar</Button>
+              <Button type="button" onClick={() => form.reset()}>
+                Cancelar
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );
