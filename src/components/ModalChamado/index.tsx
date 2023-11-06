@@ -19,7 +19,7 @@ type ModalChamadoProps = {
     id: string;
     clientId: string;
     subject: string;
-    criticality: string;
+    criticality: number;
     status: string;
     createdAt: Date;
     updatedAt: Date | null;
@@ -38,7 +38,7 @@ type ModalChamadoProps = {
 
 const chamadoFormSchema = z.object({
   status: z.string(),
-  criticality: z.string(),
+  criticality: z.number(),
   actions: z
     .object({
       description: z
@@ -148,11 +148,13 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
                   label="Criticidade"
                   error={form.formState.errors.criticality}
                   defaultValue={form.getValues("criticality")}
-                  onChange={(e) => form.setValue("criticality", e.target.value)}
+                  onChange={(e) =>
+                    form.setValue("criticality", Number(e.target.value))
+                  }
                 >
-                  <option value="low">Baixa</option>
-                  <option value="medium">Média</option>
-                  <option value="high">Alta</option>
+                  <option value="1">Baixa</option>
+                  <option value="2">Média</option>
+                  <option value="3">Alta</option>
                 </Select>
               </div>
 

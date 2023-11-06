@@ -21,13 +21,13 @@ export function translateStatus(status: string) {
   }
 }
 
-export function translateCriticality(criticality: string) {
+export function translateCriticality(criticality: number) {
   switch (criticality) {
-    case "low":
+    case 1:
       return "Baixa";
-    case "medium":
+    case 2:
       return "Média";
-    case "high":
+    case 3:
       return "Alta";
     default:
       "";

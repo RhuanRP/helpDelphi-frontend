@@ -13,7 +13,7 @@ export type TicketsQueryResponse = {
     id: string;
     clientId: string;
     subject: string;
-    criticality: string;
+    criticality: number;
     status: string;
     createdAt: Date;
     updatedAt: Date | null;
