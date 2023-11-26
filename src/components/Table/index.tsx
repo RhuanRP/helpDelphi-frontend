@@ -16,6 +16,7 @@ const Table = ({ data }: TableProps) => {
     <table className="call-table">
       <thead>
         <tr>
+          <th>N°</th>
           <th>Assunto</th>
           <th>Data</th>
           <th>Cliente</th>
@@ -27,8 +28,9 @@ const Table = ({ data }: TableProps) => {
       <tbody className="table-body">
         {data && (
           <>
-            {data.items.map((item) => (
+            {data.items.map((item, index) => (
               <tr key={item.id}>
+                <td>{index + 1}</td>
                 <td>{item.subject}</td>
                 <td>{formatDate(new Date(item.createdAt))}</td>
                 <td>{item.user.name}</td>
