@@ -86,10 +86,7 @@ const Login = () => {
           error={form.formState.errors.password}
         />
         <div className="button-container">
-          <Button
-            disabled={mutation.isPending || mutation.isSuccess}
-            type="submit"
-          >
+          <Button disabled={mutation.isPending} type="submit">
             {mutation.isPending && <Icons.spinner className="loader-icon" />}
             Acessar
           </Button>

@@ -13,7 +13,7 @@ export type TableProps = {
 
 const Table = ({ data }: TableProps) => {
   return (
-    <table className="call-table">
+    <table>
       <thead>
         <tr>
           <th>N°</th>

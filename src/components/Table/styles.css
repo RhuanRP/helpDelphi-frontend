@@ -2,11 +2,8 @@ table {
   max-width: 100%;
   width: 100%;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
+  margin-top: 10px;
 }
-
-/* .call-table {
-  background-color: black;
-} */
 
 thead {
   background-color: #f8f8f8;
