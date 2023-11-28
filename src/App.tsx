@@ -65,11 +65,11 @@ function App() {
   return (
     <>
       <Header />
-      <div className="container data-wrapper">
+      <div className="container">
         <Input
           name="search"
           label=""
-          placeholder="Pesquisar pelo título"
+          placeholder="Pesquisar pelo assunto"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
