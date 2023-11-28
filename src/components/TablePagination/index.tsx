@@ -16,8 +16,8 @@ export function TablePagination({
 }: TablePaginationProps) {
   const qtdPages =
     totalCount % 10 == 0
-      ? Math.round(totalCount / 10)
-      : Math.round(totalCount / 10) + 1;
+      ? Math.floor(totalCount / 10)
+      : Math.floor(totalCount / 10) + 1;
 
   return (
     <div className="pages-wrapper">
