@@ -20,20 +20,16 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 
-  :hover {
-    background-color: #5aa8f7/90;
+  &:hover {
+    background-color: #a0c8f7;
   }
 
-  :focus-visible {
+  &:focus-visible {
     outline: none;
   }
 
-  :disabled {
+  &:disabled {
     pointer-events: none;
     opacity: 0.5;
   }
-}
-
-.primary-button:hover {
-  background-color: #a0c8f7;
 }

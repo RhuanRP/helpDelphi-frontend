@@ -9,6 +9,7 @@ import { api } from "./lib/api";
 import { verifyAuthToken } from "./lib/utils";
 import { Input } from "./components/Form/Input";
 import { useDebounce } from "./hooks/use-debounce";
+import { TablePagination } from "./components/TablePagination";
 
 export type TicketsQueryResponse = {
   items: {
@@ -36,15 +37,16 @@ export type TicketsQueryResponse = {
 function App() {
   const [cookies] = useCookies(["helpdelphi_api_token"]);
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
   const debouncedSearch = useDebounce(search);
   const navigate = useNavigate();
 
   const { data } = useQuery({
-    queryKey: ["chamados", debouncedSearch],
+    queryKey: ["chamados", debouncedSearch, page],
     queryFn: async () => {
       return api
         .get<TicketsQueryResponse>(
-          `/tickets?page=1&search=${debouncedSearch.toUpperCase()}`,
+          `/tickets?page=${page}&search=${debouncedSearch.toUpperCase()}`,
         )
         .then((res) => res.data);
     },
@@ -74,6 +76,14 @@ function App() {
           onChange={(e) => setSearch(e.target.value)}
         />
         <Table data={data} />
+        {data && (
+          <TablePagination
+            currentPage={page}
+            nextPage={() => setPage(page + 1)}
+            previousPage={() => setPage(page - 1)}
+            totalCount={data.totalCount}
+          />
+        )}
       </div>
     </>
   );
