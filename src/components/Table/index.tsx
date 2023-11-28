@@ -28,9 +28,9 @@ const Table = ({ data }: TableProps) => {
       <tbody className="table-body">
         {data && (
           <>
-            {data.items.map((item, index) => (
+            {data.items.map((item) => (
               <tr key={item.id}>
-                <td>{index + 1}</td>
+                <td>{item.number}</td>
                 <td>{item.subject}</td>
                 <td>{formatDate(new Date(item.createdAt))}</td>
                 <td>{item.user.name}</td>
