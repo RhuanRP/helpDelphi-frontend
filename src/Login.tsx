@@ -66,32 +66,34 @@ const Login = () => {
 
   return (
     <div className="tela-login">
-      <div className="logo">
-        <img src={logo} alt="Logo" />
-      </div>
-      <h2>
-        <span className="help-text">Help</span>
-        <span className="delphi-text">Delphi</span>
-      </h2>
-      <form onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}>
-        <Input
-          label="Usuário"
-          {...form.register("username")}
-          error={form.formState.errors.username}
-        />
-        <Input
-          type="password"
-          label="Senha"
-          {...form.register("password")}
-          error={form.formState.errors.password}
-        />
-        <div className="button-container">
-          <Button disabled={mutation.isPending} type="submit">
-            {mutation.isPending && <Icons.spinner className="loader-icon" />}
-            Acessar
-          </Button>
+      <div className="e">
+        <div className="logo">
+          <img src={logo} alt="Logo" />
         </div>
-      </form>
+        <h2>
+          <span className="help-text">Help</span>
+          <span className="delphi-text">Delphi</span>
+        </h2>
+        <form onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}>
+          <Input
+            label="Usuário"
+            {...form.register("username")}
+            error={form.formState.errors.username}
+          />
+          <Input
+            type="password"
+            label="Senha"
+            {...form.register("password")}
+            error={form.formState.errors.password}
+          />
+          <div className="button-container">
+            <Button disabled={mutation.isPending} type="submit">
+              {mutation.isPending && <Icons.spinner className="loader-icon" />}
+              Acessar
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
