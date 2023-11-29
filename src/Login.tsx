@@ -1,6 +1,6 @@
 import logo from "./assets/logo.png";
 import { Button } from "./components/Button";
-import "./styles/Login.css";
+import "./styles/login.css";
 import { Input } from "./components/Form/Input";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
