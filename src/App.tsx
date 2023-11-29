@@ -15,6 +15,7 @@ export type TicketsQueryResponse = {
   items: {
     id: string;
     clientId: string;
+    number: number;
     subject: string;
     criticality: number;
     status: string;
