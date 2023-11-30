@@ -21,6 +21,7 @@ type ModalChamadoProps = {
     subject: string;
     criticality: number;
     status: string;
+    description: string;
     createdAt: Date;
     updatedAt: Date | null;
     actions: {
@@ -167,7 +168,12 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
                 </Select>
               </div>
 
-              <TextArea disabled name="description" label="Descrição" />
+              <TextArea
+                disabled
+                defaultValue={chamado.description}
+                name="description"
+                label="Descrição"
+              />
 
               <div className="actions-wrapper">
                 <h2>Histórico de Ações</h2>
