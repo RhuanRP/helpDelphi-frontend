@@ -90,6 +90,15 @@ export function ModalChamado({ chamado }: ModalChamadoProps) {
   });
 
   function onSubmit(data: Input) {
+    if (data.status === "stopped" && data.actions.length < 1) {
+      form.setError("status", {
+        type: "validate",
+        message: "É preciso fornecer uma ação justificando a pausa do chamado.",
+      });
+
+      return;
+    }
+
     mutation.mutate(data);
   }
 
