@@ -147,10 +147,7 @@ function Admin() {
               />
             </div>
             <div className="submit-buttons">
-              <Button
-                disabled={mutation.isPending || mutation.isSuccess}
-                type="submit"
-              >
+              <Button disabled={mutation.isPending} type="submit">
                 {mutation.isPending && (
                   <Icons.spinner className="loader-icon" />
                 )}
