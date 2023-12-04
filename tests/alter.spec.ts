@@ -16,10 +16,9 @@ test.describe("alter status tests", () => {
 
     const secondRowStatus = await page
       .locator("table tr:nth-child(1) td")
-      .nth(4)
+      .nth(5)
       .textContent();
-    console.log("Status na segunda linha:", secondRowStatus);
 
-    await expect(secondRowStatus).toBe("Em Andamento");
+    expect(secondRowStatus).toBe("Em Andamento");
   });
 });
